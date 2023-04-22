@@ -1,0 +1,64 @@
+Perhitungan Manual
+
+Diketahui >>>
+
+Umur      Pendapatan        Mhs        Rating Kredit        Beli Komputer
+<=30        tinggi         bukan           fair                 tidak
+<=30        tinggi         bukan         Excellent               Tdk 
+31…40       tinggi         bukan           fair                  ya
+>40         sedang         bukan           fair                  ya
+>40         rendah           ya            fair                  ya
+>40         rendah           ya          excellent               tdk
+31…40       rendah           ya          excellent               ya
+<=30        sedang         bukan           fair                  tdk
+<=30        rendah           ya            fair                  ya
+>40         sedang           ya            fair                  ya
+<=30        sedang           ya          excellent               ya
+31…40       sedang         bukan         excellent               ya
+31…40       tinggi           ya            fair                  ya
+>40         sedang         bukan         excellent               tdk
+
+Bila data baru yg blm memiliki class sbb:
+X =(umur<=30, pendapatan=sedang, mhs=ya,rating kredit= Fair)
+Tentukan class dari label(beli komputer) apakah ya atau tidak. dengan menggunakan cara manual ?
+
+
+---> Langkah pertama yang dapat kita lakukan adalah menghitung dengan Probabilitas Kelas
+
+P(ya) = jumlah kelas ya / jumlah total sampel = 9 / 14 = 0.643
+P(tidak) = jumlah kelas tidak / jumlah total sampel = 5 / 14 = 0.357
+
+---> Selanjutnya ,menghitung Probabilitas melalui Fitur untuk Setiap Kelas
+
+- Fitur umur <= 30
+P(umur <= 30 | ya) = jumlah umur <= 30 dan kelas ya / jumlah kelas ya = 2 / 9 = 0.222
+P(umur <= 30 | tidak) = jumlah umur <= 30 dan kelas tidak / jumlah kelas tidak = 3 / 5 = 0.6
+- Fitur pendapatan sedang
+P(pendapatan = sedang | ya) = jumlah pendapatan sedang dan kelas ya / jumlah kelas ya = 2 / 9 = 0.222
+P(pendapatan = sedang | tidak) = jumlah pendapatan sedang dan kelas tidak / jumlah kelas tidak = 1 / 5 = 0.2
+- Fitur mahasiswa ya
+P(mhs = ya | ya) = jumlah mahasiswa ya dan kelas ya / jumlah kelas ya = 3 / 9 = 0.333
+P(mhs = ya | tidak) = jumlah mahasiswa ya dan kelas tidak / jumlah kelas tidak = 2 / 5 = 0.4
+- Fitur rating kredit fair
+P(rating kredit = fair | ya) = jumlah rating kredit fair dan kelas ya / jumlah kelas ya = 2 / 9 = 0.222
+P(rating kredit = fair | tidak) = jumlah rating kredit fair dan kelas tidak / jumlah kelas tidak = 3 / 5 = 0.6
+
+---> Setelah itu menghitung Probabilitas Fitur untuk New Data
+P(X) = P(umur <= 30) x P(pendapatan = sedang) x P(mhs = ya) x P(rating kredit = fair)
+      = 0.222 x 0.222 x 0.333 x 0.222 = 0.007
+
+---> Selanjutnya menghitung Probabilitas Posterior untuk Setiap Kelas
+P(ya | X) = P(X | ya) x P(ya) / P(X)
+          = P(umur <= 30 | ya) x P(pendapatan = sedang | ya) x P(mhs = ya | ya) x P(rating kredit = fair | ya) x P(ya) / P(X)
+          = 0.222 x 0.222 x 0.333 x 0.222 x 0.643 / 0.007
+          = 0.001 x 0.643 / 0.007
+          = 0.091
+P(tidak | X) = P(X | tidak) x P(tidak) / P(X)
+             = P(umur <= 30 | tidak) x P(pendapatan = sedang | tidak) x P(mhs = ya | tidak) x P(rating kredit = fair | tidak) x P(tidak) / P(X)
+             = 0.6 x 0.2 x 0.4 x 0.6 x 0.357 / 0.007
+             = 0.771
+             
+Kesmpulan >>>
+Berdasarkan hasil perhitungan manual,
+data X yang memiliki nilai umur <=30, pendapatan sedang, status mahasiswa ya,
+dan rating kredit fair akan diklasifikasikan sebagai "tidak" atau tidak membeli komputer.
